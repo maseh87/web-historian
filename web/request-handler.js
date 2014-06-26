@@ -6,21 +6,14 @@ var fs = require('fs');
 
 // require more modules/folders here!
 
-// var router = {
-//   'GET': getCallback,
-//   'POST': postCallback
-// }
-var asset = '';
 
 exports.handleRequest = function (req, res) {
   if(req.method === 'GET') {
-    console.log('yo');
-    asset = archive.isUrlInList(req, res);
-    helpers.serveAssets(res, asset);
+    if (req.url === '/'){
+      helpers.serveAssets(res, '/public/index.html');
+    } else {
+      helpers.serveAssets(res, '/public/' + req.url);
+    }
   }
-  // res.end(asset);
 };
 
-
-
-// res.end(path.join(__dirname, '../web/public/index.html'));

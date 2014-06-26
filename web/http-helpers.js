@@ -25,15 +25,5 @@ exports.serveAssets = function(res, asset) {
 };
 
 // As you progress, keep thinking about what helper functions you can put here!
-// exports.getCallback = function(req, res) {
-  // if (req.url === '/') {
-  //   fs.readFile('', function(err, file) {
-  //     mime type
-  //     send the file on end
-  //   });
-  // },
 
-  // if css
-//   exports.serveAssests(res, /* */);
-// }
 
