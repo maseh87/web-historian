@@ -25,10 +25,13 @@ exports.initialize = function(pathsObj){
 // The following function names are provided to you to suggest how you might
 // modularize your code. Keep it clean!
 
-exports.readListOfUrls = function(){
+exports.readListOfUrls = function() {
 };
 
-exports.isUrlInList = function(){
+exports.isUrlInList = function(req, res){
+  if (req.url === '/') {
+    return '/public/index.html';
+  }
 };
 
 exports.addUrlToList = function(){

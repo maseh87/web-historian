@@ -13,6 +13,27 @@ exports.headers = headers = {
 exports.serveAssets = function(res, asset) {
   // Write some code here that helps serve up your static files!
   // (Static files are things like html (yours or archived from others...), css, or anything that doesn't change often.)
+  fs.readFile(__dirname + asset , function (err,data) {
+      if (err) {
+        res.writeHead(404);
+        res.end(JSON.stringify(err));
+        return;
+      }
+      res.writeHead(200);
+      res.end(data);
+    });
 };
 
 // As you progress, keep thinking about what helper functions you can put here!
+// exports.getCallback = function(req, res) {
+  // if (req.url === '/') {
+  //   fs.readFile('', function(err, file) {
+  //     mime type
+  //     send the file on end
+  //   });
+  // },
+
+  // if css
+//   exports.serveAssests(res, /* */);
+// }
+
