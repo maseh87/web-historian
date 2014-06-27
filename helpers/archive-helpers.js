@@ -26,7 +26,7 @@ exports.initialize = function(pathsObj){
 // modularize your code. Keep it clean!
 
 exports.readListOfUrls = function() {
-  //invoke isUrlArchived
+
 };
 
 exports.isUrlInList = function(url, res) {

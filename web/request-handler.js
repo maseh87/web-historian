@@ -6,13 +6,12 @@ var fs = require('fs');
 // require more modules/folders here!
 
 exports.handleRequest = function (req, res) {
-var site = archive.paths.siteAssets+req.url;
+  var site = archive.paths.siteAssets+req.url;
   if(req.method === 'GET') {
     if (req.url === '/'){
       helpers.serveAssets(res, site + 'index.html');
     } else {
-      archive.isUrlInList(req.url, res);
-      helpers.serveAssets(res, site);
+      helpers.serveAssets(res, req.url);
     }
   }
 };
