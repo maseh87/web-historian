@@ -29,13 +29,12 @@ exports.readListOfUrls = function() {
 
 };
 
-exports.isUrlInList = function(url, res) {
+exports.isUrlInList = function(url, callback) {
   //check to see is url is in sites.txt
   fs.readFile(this.paths.list,'utf-8', function (err, data) {
     if (err) throw err;
-    if (url.indexOf(data) !== -1) {
-      res.writeHead(200);
-      res.end('www.google.com');
+    if (url.indexOf(data) === -1) {
+      callback(false);
     }
   });
   //if it is invoke readListOfUrls

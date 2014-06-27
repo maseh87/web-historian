@@ -18,16 +18,32 @@ var contentTypes = {
 };
 
 //serve static files
-exports.serveAssets = function(res, asset) {
+exports.serveAssets = function(res, url) {
   // Write some code here that helps serve up your static files!
   // (Static files are things like html (yours or archived from others...), css, or anything that doesn't change often.)
-  var mime = contentTypes[path.extname(asset)];
+  var mime = contentTypes[path.extname(url)];
+  console.log('mime: ' + url);
   if (mime) {
     //change content type (reference contentTypes)
     res.setHeader('Content-Type', mime);
-    asset = archive.paths.siteAssets + asset;
+    url = archive.paths.siteAssets + url;
+    servePage(res, url);
+  } else {
+    archive.isUrlInList(url, function(found){
+      if(!found) {
+        url = archive.paths.siteAssets + '/loading.html';
+        servePage(res, url);
+      }
+    });
   }
-  fs.readFile(asset, 'utf-8', function (err,data) {
+};
+
+// As you progress, keep thinking about what helper functions you can put here!
+
+
+exports.servePage = servePage = function(res, url){
+  console.log('servePage function ' + url);
+  fs.readFile(url, function (err, data) {
     if (err) {
       res.writeHead(404);
       res.end(JSON.stringify(err));
@@ -36,10 +52,7 @@ exports.serveAssets = function(res, asset) {
     //send 200 (success) if no error
     res.writeHead(200);
     //return data (contents of static file
+    // res.write(data);
     res.end(data);
   });
 };
-
-// As you progress, keep thinking about what helper functions you can put here!
-
-
